@@ -8,11 +8,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D playerRigidBody;
 
     private Vector2 movement;
-
-    private void Awake()
-    {
-        
-    }
+    private Vector2 mousePosition;
 
     private void Update()
     {
@@ -20,18 +16,23 @@ public class PlayerController : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
 
-
-        TrackCamera();
+        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private void FixedUpdate()
     {
+        // Handles the player movement...
         playerRigidBody.MovePosition(playerRigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+        // Handles the player aiming...
+        Vector2 lookDir = mousePosition - playerRigidBody.position;
+        var angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        playerRigidBody.rotation = angle;
     }
 
     protected void TrackCamera()
     {
-        var mousePosition = Input.mousePosition;
+        /*var mousePosition = Input.mousePosition;
         mousePosition.z = -20;
 
         var position = mainCamera.WorldToScreenPoint(transform.position);
@@ -39,8 +40,11 @@ public class PlayerController : MonoBehaviour
         mousePosition.y -= position.y;
 
         var angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Euler(0, 0, angle);*/
+
+        Vector2 mousePosition = mainCamera.WorldToScreenPoint(Input.mousePosition);
+        Vector2 lookDir = mousePosition - playerRigidBody.position;
+        var angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        playerRigidBody.rotation = angle;
     }
-
-
 }
