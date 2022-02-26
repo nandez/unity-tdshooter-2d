@@ -11,12 +11,14 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
     public float DamageCooldown = 5f;
 
     public GameObject player;
+    public ScoreManager scoreManager;
 
     private Rigidbody2D rb;
     private Vector2 movement;
     private Animator anim;
     private bool isChasing = false;
     private bool canAttack = true;
+    private bool isTakingDamage = false;
 
     private void Awake()
     {
@@ -72,13 +74,18 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
 
     public void TakeDamage(int damage)
     {
+        if (isTakingDamage)
+            return;
+
+        isTakingDamage = true;
         HitPoints -= damage;
         if (HitPoints <= 0)
         {
-            ScoreManager.AddScorePoints(ScorePoints);
+            scoreManager.AddScorePoints(ScorePoints);
             gameObject.SetActive(false);
             Destroy(gameObject, 1f);
         }
+        isTakingDamage = false;
     }
 
     public IEnumerator AttackCooldown()

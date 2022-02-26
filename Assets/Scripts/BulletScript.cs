@@ -11,6 +11,6 @@ public class BulletScript : MonoBehaviour
             dmgComponent.TakeDamage(damage);
 
         gameObject.SetActive(false);
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 0.25f);
     }
 }
