@@ -1,21 +1,35 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ICanTakeDamage
 {
     public float moveSpeed = 5f;
     public Camera mainCamera;
     public Rigidbody2D playerRigidBody;
+    public Animator playerAnimator;
+    public int Health = 10;
+
 
     private Vector2 movement;
     private Vector2 mousePosition;
+    private int currentHealth;
+
+    private void Start()
+    {
+        currentHealth = Health;
+    }
 
     private void Update()
     {
+        // Captures the player input..
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        // Updates the animator variables for movement..
+        playerAnimator.SetFloat("Horizontal", movement.x);
+        playerAnimator.SetFloat("Vertical", movement.y);
 
+        // Captures the player's mouse current position..
         mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 
@@ -30,21 +44,12 @@ public class PlayerController : MonoBehaviour
         playerRigidBody.rotation = angle;
     }
 
-    protected void TrackCamera()
+    public void TakeDamage(int damage)
     {
-        /*var mousePosition = Input.mousePosition;
-        mousePosition.z = -20;
-
-        var position = mainCamera.WorldToScreenPoint(transform.position);
-        mousePosition.x -= position.x;
-        mousePosition.y -= position.y;
-
-        var angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);*/
-
-        Vector2 mousePosition = mainCamera.WorldToScreenPoint(Input.mousePosition);
-        Vector2 lookDir = mousePosition - playerRigidBody.position;
-        var angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        playerRigidBody.rotation = angle;
+        currentHealth -= damage;
+        if(currentHealth <= 0)
+        {
+            Debug.Log("Player dies...");
+        }
     }
 }
