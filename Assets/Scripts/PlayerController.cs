@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, ICanTakeDamage
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour, ICanTakeDamage
     public Rigidbody2D playerRigidBody;
     public Animator playerAnimator;
     public int Health = 10;
+    public TMP_Text txtHealth;
 
 
     private Vector2 movement;
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour, ICanTakeDamage
     private void Start()
     {
         currentHealth = Health;
+        DisplayHealth();
     }
 
     private void Update()
@@ -47,9 +50,16 @@ public class PlayerController : MonoBehaviour, ICanTakeDamage
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if(currentHealth <= 0)
+        if(currentHealth < 0)
+            currentHealth = 0;
+
+        DisplayHealth();
+
+        if(currentHealth == 0)
         {
             Debug.Log("Player dies...");
         }
     }
+
+    protected void DisplayHealth() => txtHealth.SetText($"+ {currentHealth}");
 }

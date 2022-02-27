@@ -7,8 +7,9 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
     public int ScorePoints = 10;
     public float Speed = 0.5f;
     public float ChaseRange = 2;
-    public int Damage = 1;
-    public float DamageCooldown = 5f;
+    public float AttackRange = 0.4f;
+    public int Damage = 5;
+    public float DamageCooldown = 3f;
 
     public GameObject player;
     public ScoreManager scoreManager;
@@ -16,7 +17,7 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
     private Rigidbody2D rb;
     private Vector2 movement;
     private Animator anim;
-    private bool isChasing = false;
+
     private bool canAttack = true;
     private bool isTakingDamage = false;
 
@@ -28,8 +29,9 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
 
     private void Update()
     {
+        var distanceToPlayer = Vector2.Distance(player.transform.position, rb.transform.position);
         // Checks if player is within chase range..
-        isChasing = Vector2.Distance(player.transform.position, rb.transform.position) < ChaseRange;
+        var isChasing = distanceToPlayer < ChaseRange;
 
         if (isChasing)
         {
@@ -39,6 +41,26 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
             rb.rotation = angle;
             direction.Normalize();
             movement = direction;
+
+            // Checks if player is close enough to attack..
+            if (distanceToPlayer <= AttackRange)
+            {
+                var dmgComponent = player.gameObject.GetComponent<ICanTakeDamage>();
+                if (dmgComponent != null)
+                {
+                    if (!canAttack)
+                        return;
+
+                    anim.SetBool("IsAttacking", true);
+                    canAttack = false;
+                    dmgComponent.TakeDamage(Damage);
+                    StartCoroutine(AttackCooldown());
+                }
+            }
+            else
+            {
+                anim.SetBool("IsAttacking", false);
+            }
         }
 
         anim.SetBool("IsChasing", isChasing);
@@ -47,29 +69,6 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
     private void FixedUpdate()
     {
         rb.MovePosition((Vector2)transform.position + (movement * Speed * Time.deltaTime));
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        var dmgComponent = collision.gameObject.GetComponent<ICanTakeDamage>();
-        if (dmgComponent != null)
-        {
-            if (!canAttack)
-                return;
-
-            anim.SetBool("IsAttacking", true);
-            dmgComponent.TakeDamage(Damage);
-            AttackCooldown();
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        var dmgComponent = collision.gameObject.GetComponent<ICanTakeDamage>();
-        if (dmgComponent != null)
-        {
-            anim.SetBool("IsAttacking", false);
-        }
     }
 
     public void TakeDamage(int damage)
@@ -90,7 +89,6 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
 
     public IEnumerator AttackCooldown()
     {
-        canAttack = false;
         yield return new WaitForSeconds(DamageCooldown);
         canAttack = true;
     }
