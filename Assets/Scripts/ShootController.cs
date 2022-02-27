@@ -15,8 +15,12 @@ public class ShootController : MonoBehaviour
 
     private readonly int magazineSize = 15;
     private int currentAmmo = 15;
-    private int remainingAmmo = 45;
+    private int remainingAmmo = 30;
 
+    private void Start()
+    {
+        UpdateAmmoText();
+    }
 
     private void Update()
     {
@@ -41,7 +45,7 @@ public class ShootController : MonoBehaviour
             isShooting = false;
             animator.SetBool("Shooting", isShooting);
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetButtonDown("Fire2"))
         {
             if (isReloading)
                 return;

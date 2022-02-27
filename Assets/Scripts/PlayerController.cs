@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour, ICanTakeDamage
     public Animator playerAnimator;
     public int Health = 10;
     public TMP_Text txtHealth;
-
+    public InGameMenuController inGameMenuController;
 
     private Vector2 movement;
     private Vector2 mousePosition;
@@ -56,9 +56,7 @@ public class PlayerController : MonoBehaviour, ICanTakeDamage
         DisplayHealth();
 
         if(currentHealth == 0)
-        {
-            Debug.Log("Player dies...");
-        }
+            inGameMenuController.ShowGameOver();
     }
 
     protected void DisplayHealth() => txtHealth.SetText($"+ {currentHealth}");
