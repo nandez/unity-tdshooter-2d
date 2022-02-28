@@ -30,7 +30,7 @@ public class ShootController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.timeScale > 0)
         {
             // If already shooting ignores the action...
             if (isShooting)
@@ -52,7 +52,7 @@ public class ShootController : MonoBehaviour
             isShooting = false;
             animator.SetBool("Shooting", isShooting);
         }
-        else if (Input.GetButtonDown("Fire2"))
+        else if (Input.GetButtonDown("Fire2") && Time.timeScale > 0)
         {
             if (isReloading)
                 return;

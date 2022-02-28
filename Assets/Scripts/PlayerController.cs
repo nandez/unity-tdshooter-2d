@@ -11,13 +11,17 @@ public class PlayerController : MonoBehaviour, ICanTakeDamage
     public int Health = 10;
     public TMP_Text txtHealth;
     public InGameMenuController inGameMenuController;
+    public AudioClip playerHitAudio;
 
     private Vector2 movement;
     private Vector2 mousePosition;
     private int currentHealth;
+    private AudioSource playerAudioSource;
 
     private void Start()
     {
+        playerAudioSource = GetComponent<AudioSource>();
+
         currentHealth = Health;
         DisplayHealth();
     }
@@ -49,6 +53,9 @@ public class PlayerController : MonoBehaviour, ICanTakeDamage
 
     public void TakeDamage(int damage)
     {
+        if (!playerAudioSource.isPlaying)
+            playerAudioSource.PlayOneShot(playerHitAudio);
+
         currentHealth -= damage;
         if(currentHealth < 0)
             currentHealth = 0;
