@@ -9033,6 +9033,7 @@ MonoBehaviour:
   Health: 100
   txtHealth: {fileID: 2129063226}
   inGameMenuController: {fileID: 110477804}
+  playerHitAudio: {fileID: 8300000, guid: 98b1aaf0e9382ce46b2b8110534a05da, type: 3}
 --- !u!50 &1950256073
 Rigidbody2D:
   serializedVersion: 4
