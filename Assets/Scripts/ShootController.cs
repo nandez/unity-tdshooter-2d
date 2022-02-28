@@ -10,6 +10,9 @@ public class ShootController : MonoBehaviour
     public Animator animator;
     public TMP_Text txtAmmo;
 
+    public AudioClip shotAudio;
+    public AudioClip reloadAudio;
+
     private bool isShooting = false;
     private bool isReloading = false;
 
@@ -17,8 +20,11 @@ public class ShootController : MonoBehaviour
     private int currentAmmo = 15;
     private int remainingAmmo = 30;
 
+    private AudioSource audioSrc;
+
     private void Start()
     {
+        audioSrc = GetComponent<AudioSource>();
         UpdateAmmoText();
     }
 
@@ -39,6 +45,7 @@ public class ShootController : MonoBehaviour
 
             var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+            audioSrc.PlayOneShot(shotAudio);
             currentAmmo--;
             UpdateAmmoText();
 
@@ -70,6 +77,7 @@ public class ShootController : MonoBehaviour
                     remainingAmmo = 0;
                 }
 
+                audioSrc.PlayOneShot(reloadAudio);
                 UpdateAmmoText();
             }
         }

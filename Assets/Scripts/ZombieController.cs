@@ -14,9 +14,14 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
     public GameObject player;
     public ScoreManager scoreManager;
 
+    public AudioClip zombieIdleAudio;
+    public AudioClip zombieGrowlAudio;
+    public AudioSource audioSrc;
+
     private Rigidbody2D rb;
     private Vector2 movement;
     private Animator anim;
+    
 
     private bool canAttack = true;
     private bool isTakingDamage = false;
@@ -31,9 +36,10 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
     {
         var distanceToPlayer = Vector2.Distance(player.transform.position, rb.transform.position);
         // Checks if player is within chase range..
-        var isChasing = distanceToPlayer < ChaseRange;
+        var canChasePlayer = distanceToPlayer < ChaseRange;
+        var canAttackPlayer = distanceToPlayer <= AttackRange;
 
-        if (isChasing)
+        if (canChasePlayer)
         {
             // Rotates towards player and starts moving..
             Vector3 direction = player.transform.position - transform.position;
@@ -43,7 +49,7 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
             movement = direction;
 
             // Checks if player is close enough to attack..
-            if (distanceToPlayer <= AttackRange)
+            if (canAttackPlayer)
             {
                 var dmgComponent = player.gameObject.GetComponent<ICanTakeDamage>();
                 if (dmgComponent != null)
@@ -63,7 +69,18 @@ public class ZombieController : MonoBehaviour, ICanTakeDamage
             }
         }
 
-        anim.SetBool("IsChasing", isChasing);
+        if (!audioSrc.isPlaying)
+        {
+            // Use some random value to avoid spamming sounds..
+            if (Random.value <= 0.05)
+            {
+                // Checks if player is close enough to play a growl or idle audio..
+                audioSrc.pitch = Random.Range(1f, 3f);
+                audioSrc.PlayOneShot(canAttackPlayer ? zombieGrowlAudio : zombieIdleAudio);
+            }
+        }
+
+        anim.SetBool("IsChasing", canChasePlayer);
     }
 
     private void FixedUpdate()

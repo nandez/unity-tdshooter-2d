@@ -1280,6 +1280,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &359516439
 Animator:
   serializedVersion: 4
@@ -2235,6 +2238,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &568110073
 Animator:
   serializedVersion: 4
@@ -2679,6 +2685,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &632061146
 Animator:
   serializedVersion: 4
@@ -3129,6 +3138,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &690552015
 Animator:
   serializedVersion: 4
@@ -4882,6 +4894,134 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1125539974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125539976}
+  - component: {fileID: 1125539975}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1125539975
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125539974}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1125539976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125539974}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1139058781
 GameObject:
   m_ObjectHideFlags: 0
@@ -5200,6 +5340,9 @@ MonoBehaviour:
   DamageCooldown: 0.5
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &1222805026
 Animator:
   serializedVersion: 4
@@ -5509,6 +5652,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &1259093986
 Animator:
   serializedVersion: 4
@@ -5952,6 +6098,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!1 &1309269004
 GameObject:
   m_ObjectHideFlags: 0
@@ -6823,6 +6972,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &1518533562
 Animator:
   serializedVersion: 4
@@ -7265,6 +7417,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &1634465931
 Animator:
   serializedVersion: 4
@@ -7752,6 +7907,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &1699587635
 Animator:
   serializedVersion: 4
@@ -8470,6 +8628,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &1884554802
 Animator:
   serializedVersion: 4
@@ -8757,6 +8918,7 @@ GameObject:
   - component: {fileID: 1950256071}
   - component: {fileID: 1950256072}
   - component: {fileID: 1950256074}
+  - component: {fileID: 1950256076}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8909,6 +9071,8 @@ MonoBehaviour:
   bulletForce: 10
   animator: {fileID: 1950256071}
   txtAmmo: {fileID: 1785066822}
+  shotAudio: {fileID: 8300000, guid: 27b8e715eda9e1c4e8edd2153d10d5c9, type: 3}
+  reloadAudio: {fileID: 8300000, guid: 549056d47f6cdee46a7ea122699efea4, type: 3}
 --- !u!61 &1950256075
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8935,6 +9099,102 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34612414, y: 0.34284782}
   m_EdgeRadius: 0
+--- !u!82 &1950256076
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950256068}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1970950611
 GameObject:
   m_ObjectHideFlags: 0
@@ -9223,6 +9483,9 @@ MonoBehaviour:
   DamageCooldown: 0.75
   player: {fileID: 1950256068}
   scoreManager: {fileID: 110477803}
+  zombieIdleAudio: {fileID: 8300000, guid: 73e5e3a71351e3e4fb5b566107b035ba, type: 3}
+  zombieGrowlAudio: {fileID: 8300000, guid: 6e447530ce7ee23448346a59ff2614c8, type: 3}
+  audioSrc: {fileID: 1125539975}
 --- !u!95 &2040332362
 Animator:
   serializedVersion: 4

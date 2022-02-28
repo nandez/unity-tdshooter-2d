@@ -7,7 +7,7 @@ public class MenuController : MonoBehaviour
 {
     public void OnStartGame()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
     }
 
     public void OnExitGame()
